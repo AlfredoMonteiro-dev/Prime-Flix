@@ -6,7 +6,8 @@ import './/home.css'
 //URL DA API: https://api.themoviedb.org/3/movie/now_playing?api_key=23d3e2431395c2b303e412c9189d2ba0&language=pt-BR
 
 function Home(){
-    const [filmes, setFilmes] = useState([])
+    const [filmes, setFilmes] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     
     useEffect(()=>{
@@ -22,12 +23,21 @@ function Home(){
 
            // console.log(response.data.results.slice(0,10));
            setFilmes(response.data.results.slice(2,12))
+            setLoading(false);
 
         }
 
         loadFillmes();
 
     }, [])
+
+    if(loading){
+        return(
+            <div className="loading">
+                <h2>carregando filmes....</h2>
+            </div>
+        )
+    }
 
     return(
         <div className='container'>
