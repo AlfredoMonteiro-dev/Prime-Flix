@@ -22,7 +22,7 @@ function Home(){
             })
 
            // console.log(response.data.results.slice(0,10));
-           setFilmes(response.data.results.slice(2,12))
+           setFilmes(response.data.results.slice(2,14))
             setLoading(false);
 
         }
@@ -45,10 +45,17 @@ function Home(){
             {filmes.map((filme) =>{
                 return(
                     <article key={filme.id}>
-                        <strong>{filme.title}</strong>
-                        <img src={`https://image.tmdb.org/t/p/original/${filme.poster_path}`} alt={filme.title} />
-                        <Link to={`/filme/${filme.id}`}>Acessar</Link>
-                    </article>
+
+                            <img src={`https://image.tmdb.org/t/p/original/${filme.poster_path}`} alt={filme.title} />
+                            <div className="detalhes-filme">
+                                <h2>{filme.title}</h2>
+                                <div className="flex-buttons">
+                                    <Link to={`/filme/${filme.id}`}>Detalhes</Link>
+                                    <a target="blank" rel="external" href={`https://youtube.com/results?search_query=${filme.title} Trailer`}><i class="fa-solid fa-clapperboard"></i> Trailer</a>
+                                </div>
+                            </div>
+
+                        </article>
                 )
             })}
            </div>
